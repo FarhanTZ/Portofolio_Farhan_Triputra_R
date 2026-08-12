@@ -2,7 +2,240 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 antialiased min-h-screen selection:bg-indigo-500 selection:text-white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-family: 'Space Mono', monospace;
+    background-color: #FFE5A6;
+    color: #f6ded1;
+    overflow-x: hidden;
   }
+}
+
+.font-pixel, .font-mono {
+  font-family: 'Space Mono', monospace;
+}
+
+/* Retro LCD & Console Colors */
+:root {
+  --shell-yellow: #f4b41a;
+  --shell-dark: #1c1109;
+  --bezel-color: #fdbb24;
+  --screen-bg: #f1e2b7;
+  --text-primary: #1c1109;
+  --accent-gold: #ffd587;
+  --surface-dark: #2a1d15;
+}
+
+/* Custom Console Shell & Screen Borders */
+.console-shell-border {
+  border: 8px solid #9d8f79;
+  border-radius: 28px;
+  box-shadow: 
+    inset -8px -8px 0px 0px rgba(0,0,0,0.6), 
+    inset 8px 8px 0px 0px rgba(255,255,255,0.08),
+    16px 20px 0px 0px rgba(0,0,0,0.75);
+}
+
+.screen-bezel {
+  border: 28px solid #fdbb24;
+  border-radius: 16px 16px 44px 16px;
+  box-shadow: inset 4px 4px 12px rgba(0,0,0,0.85);
+}
+
+.screen-glass {
+  background-color: #f1e2b7;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: inset 0 0 24px rgba(0,0,0,0.6);
+}
+
+.screen-glass.crt-on::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 4px, 6px 100%;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
+/* Button Press Physical Feedback */
+.button-press {
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+
+.button-press:active, .button-pressed {
+  transform: scale(0.94) translate(1px, 2px);
+}
+
+/* Realistic D-Pad Styling */
+.d-pad-housing {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #f4b41a;
+  box-shadow: inset 6px 6px 12px rgba(133, 90, 0, 0.6), inset -6px -6px 12px rgba(255, 255, 255, 0.45);
+  position: relative;
+}
+
+.d-pad-base {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90px;
+  height: 90px;
+  filter: drop-shadow(4px 6px 6px rgba(0,0,0,0.65));
+}
+
+.d-pad-button {
+  position: absolute;
+  background-color: #5c4a3d;
+  border: none;
+  box-shadow: inset 1px 1px 3px rgba(255,255,255,0.2), inset -2px -2px 4px rgba(0,0,0,0.5);
+  outline: none;
+  cursor: pointer;
+}
+
+.d-pad-button:hover {
+  background-color: #6d5849;
+}
+
+.d-pad-button:active, .d-pad-button.active {
+  box-shadow: inset 2px 2px 6px rgba(0,0,0,0.85);
+  background-color: #4a3a2f;
+}
+
+.d-pad-up { top: 0; left: 30px; width: 30px; height: 35px; border-radius: 6px 6px 0 0; }
+.d-pad-down { bottom: 0; left: 30px; width: 30px; height: 35px; border-radius: 0 0 6px 6px; }
+.d-pad-left { top: 30px; left: 0; width: 35px; height: 30px; border-radius: 6px 0 0 6px; }
+.d-pad-right { top: 30px; right: 0; width: 35px; height: 30px; border-radius: 0 6px 6px 0; }
+.d-pad-center { top: 30px; left: 30px; width: 30px; height: 30px; z-index: 10; box-shadow: none; pointer-events: none; }
+
+.d-pad-center::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, transparent 80%);
+}
+
+.d-pad-arrow {
+  position: absolute;
+  width: 0; height: 0;
+  border-style: solid;
+  opacity: 0.35;
+}
+.d-pad-up .d-pad-arrow { top: 8px; left: 50%; transform: translateX(-50%); border-width: 0 6px 8px 6px; border-color: transparent transparent #000 transparent; }
+.d-pad-down .d-pad-arrow { bottom: 8px; left: 50%; transform: translateX(-50%); border-width: 8px 6px 0 6px; border-color: #000 transparent transparent transparent; }
+.d-pad-left .d-pad-arrow { left: 8px; top: 50%; transform: translateY(-50%); border-width: 6px 8px 6px 0; border-color: transparent #000 transparent transparent; }
+.d-pad-right .d-pad-arrow { right: 8px; top: 50%; transform: translateY(-50%); border-width: 6px 0 6px 8px; border-color: transparent transparent transparent #000; }
+
+/* Action Buttons */
+.action-housing {
+  width: 130px;
+  height: 64px;
+  border-radius: 32px;
+  background-color: #f4b41a;
+  box-shadow: inset 4px 4px 8px rgba(133, 90, 0, 0.5), inset -2px -2px 6px rgba(255, 255, 255, 0.4);
+  position: relative;
+}
+
+.action-btn {
+  background-color: #6d5b4b;
+  border: none;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.5), inset 1px 2px 3px rgba(255,255,255,0.25), inset -2px -2px 4px rgba(0,0,0,0.6);
+  border-radius: 50%;
+  color: #2a1d15;
+  text-shadow: 0px 1px 0px rgba(255,255,255,0.2);
+  cursor: pointer;
+  user-select: none;
+}
+
+.action-btn:hover {
+  background-color: #7e6c5b;
+}
+
+.action-btn:active, .action-btn.active {
+  box-shadow: inset 2px 4px 6px rgba(0,0,0,0.85) !important;
+  transform: translate(1px, 2px);
+}
+
+/* Cursor Blink */
+.blinking-cursor {
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Fullscreen Zoom Effect */
+.zoom-transition {
+  transition: all 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.zoom-active {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100vw !important;
+  max-height: 100vh !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+  z-index: 9999 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.zoom-active .screen-bezel {
+  border-width: 0 !important;
+  border-radius: 0 !important;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.zoom-active .screen-glass {
+  border-radius: 0 !important;
+}
+
+.zoom-active .console-controls {
+  display: none !important;
+}
+
+.zoom-active #shoulder-bumpers {
+  display: none !important;
+}
+
+/* 8-bit Dialog Box */
+.dialog-box {
+  background-color: #d4c69d;
+  border: 4px solid #403229;
+  padding: 16px;
+  position: relative;
+  box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+}
+
+/* Custom Scrollbar inside screen */
+.custom-retro-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-retro-scroll::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+.custom-retro-scroll::-webkit-scrollbar-thumb {
+  background: #f4b41a;
+  border-radius: 4px;
+  border: 1px solid #403229;
+}
+.custom-retro-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ffd587;
 }
