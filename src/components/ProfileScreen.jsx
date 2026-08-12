@@ -58,7 +58,7 @@ export const ProfileScreen = ({ onBack }) => {
           <div>
             <div className="flex items-center gap-3.5 pb-3 border-b-2 border-[#cdbe96] mb-3">
               {/* Profile Photo with Pixel Border */}
-              <div className="relative w-20 h-20 bg-[#403229] text-[#f4b41a] rounded-lg border-2 border-[#1c1109] overflow-hidden flex-shrink-0 shadow-md">
+              <div className="relative w-20 h-20 bg-[#403229] text-[#f4b41a] rounded-lg border-2 border-[#1c1109] overflow-hidden shrink-0 shadow-md">
                 <img
                   src="/profile/Foto_Ijazah.jpeg"
                   alt="Farhan Triputra Ramadhan"
@@ -267,7 +267,7 @@ export const ProfileScreen = ({ onBack }) => {
               key={item.name}
               className="bg-[#cdbe96] p-2.5 rounded border-2 border-[#403229] flex items-center gap-3"
             >
-              <div className="w-9 h-9 bg-[#403229] text-[#f4b41a] rounded flex items-center justify-center border border-[#1c1109] flex-shrink-0">
+              <div className="w-9 h-9 bg-[#403229] text-[#f4b41a] rounded flex items-center justify-center border border-[#1c1109] shrink-0">
                 <span className="material-symbols-outlined text-lg">{item.icon}</span>
               </div>
               <div className="flex-1 min-w-0">
