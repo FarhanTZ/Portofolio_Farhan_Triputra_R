@@ -3,9 +3,9 @@ import { audioEngine } from '../utils/audio';
 
 const MENU_ITEMS = [
   { id: 'start-game', label: 'START', desc: 'Play 32-Bit Mini Quest Arcade' },
-  { id: 'skills', label: 'SKILLS', desc: 'View Skill Matrix & RPG Stats' },
-  { id: 'projects', label: 'PROJECTS', desc: 'Browse Projects Database' },
   { id: 'profile', label: 'PROFILE', desc: 'Farhan Triputra Char Sheet & Equipment' },
+  { id: 'projects', label: 'PROJECTS', desc: 'Browse Projects Database' },
+  { id: 'skills', label: 'SKILLS', desc: 'View Skill Matrix & RPG Stats' },
   { id: 'customize', label: 'CUSTOMIZE', desc: 'Console Theme & Audio Settings' },
 ];
 
@@ -47,9 +47,9 @@ export const BootMenu = ({ onSelectOption, activeOption, setActiveOption }) => {
   }, [selectedIndex]);
 
   return (
-    <div className="flex flex-col h-full justify-between items-center w-full relative z-10 p-3 md:p-6 select-none">
+    <div className="flex flex-col h-full items-center justify-between w-full relative z-10 p-2 sm:p-4 md:p-6 overflow-y-auto custom-retro-scroll select-none gap-2">
       {/* Top Floating Player Status Bar */}
-      <div className="w-full max-w-sm bg-[#1c1109]/85 border-2 border-[#504533] rounded-lg px-3 py-1.5 flex items-center justify-between text-xs font-pixel shadow-md">
+      <div className="w-full max-w-sm bg-[#1c1109]/85 border-2 border-[#504533] rounded-lg px-3 py-1 flex items-center justify-between text-xs font-pixel shadow-md shrink-0">
         <div className="flex items-center gap-2 overflow-hidden">
           <span className="w-2 h-2 bg-[#f4b41a] rounded-sm animate-pulse flex-shrink-0" />
           <span className="font-bold text-[#f6ded1] tracking-wider truncate">FARHAN TRIPUTRA</span>
@@ -60,7 +60,7 @@ export const BootMenu = ({ onSelectOption, activeOption, setActiveOption }) => {
       </div>
 
       {/* Center Translucent Menu Overlay Box */}
-      <div className="w-full max-w-xs bg-[#1c1109]/90 border-3 border-[#504533] rounded-xl p-3 md:p-4 my-auto shadow-2xl backdrop-blur-xs flex flex-col gap-2">
+      <div className="w-full max-w-xs bg-[#1c1109]/90 border-3 border-[#504533] rounded-xl p-2.5 md:p-4 my-auto shadow-2xl backdrop-blur-xs flex flex-col gap-1.5 shrink-0">
         {MENU_ITEMS.map((item, index) => {
           const isSelected = selectedIndex === index;
           return (
@@ -79,7 +79,7 @@ export const BootMenu = ({ onSelectOption, activeOption, setActiveOption }) => {
                   audioEngine.playBlip();
                 }
               }}
-              className={`group flex items-center justify-between px-3 py-2 rounded text-left transition-all font-pixel text-xs md:text-sm ${
+              className={`group flex items-center justify-between px-3 py-1.5 md:py-2 rounded text-left transition-all font-pixel text-xs md:text-sm ${
                 isSelected
                   ? 'bg-[#f4b41a] text-[#1c1109] font-bold border-2 border-[#1c1109] shadow-[2px_2px_0px_rgba(0,0,0,0.8)] scale-[1.02]'
                   : 'text-[#f6ded1] hover:bg-[#35271f]/80'
@@ -107,7 +107,7 @@ export const BootMenu = ({ onSelectOption, activeOption, setActiveOption }) => {
       </div>
 
       {/* Controller Hint Footer */}
-      <div className="text-[10px] font-mono text-[#f6ded1]/90 bg-[#170c05]/80 px-3 py-1 rounded-full border border-[#504533] text-center">
+      <div className="text-[10px] font-mono text-[#f6ded1]/90 bg-[#170c05]/80 px-3 py-1 rounded-full border border-[#504533] text-center shrink-0">
         <strong className="text-[#f4b41a]">D-PAD</strong>: NAV | <strong className="text-[#f4b41a]">A</strong>: SELECT
       </div>
     </div>

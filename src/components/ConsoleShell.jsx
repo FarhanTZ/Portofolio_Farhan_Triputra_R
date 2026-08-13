@@ -351,7 +351,7 @@ export const ConsoleShell = () => {
         {/* Display Screen Frame & Glass */}
         <div
           id="inner-screen"
-          className="screen-bezel w-full md:flex-1 h-[280px] sm:h-[320px] md:h-full flex flex-col relative zoom-transition bg-[#fdbb24] mx-0 md:mx-4 overflow-hidden rounded-[28px] md:rounded-[36px]"
+          className="screen-bezel w-full md:flex-1 h-[330px] sm:h-[360px] md:h-full flex flex-col relative zoom-transition bg-[#fdbb24] mx-0 md:mx-4 overflow-hidden rounded-[28px] md:rounded-[36px]"
         >
           {/* Display Glass */}
           <div
