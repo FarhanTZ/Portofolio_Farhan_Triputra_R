@@ -1,5 +1,4 @@
 import React from 'react';
-import { SHELL_THEMES } from '../types';
 import { audioEngine } from '../utils/audio';
 
 export const CustomizeScreen = ({ settings, onUpdateSettings, onBack }) => {
@@ -15,7 +14,7 @@ export const CustomizeScreen = ({ settings, onUpdateSettings, onBack }) => {
             </h2>
           </div>
           <p className="font-mono text-xs text-[#574d2d] mt-0.5">
-            CALIBRATE HARDWARE SHELL & DISPLAY CRT FILTERS
+            CALIBRATE DISPLAY CRT FILTERS & AUDIO SYNTHESIZER
           </p>
         </div>
 
@@ -24,48 +23,11 @@ export const CustomizeScreen = ({ settings, onUpdateSettings, onBack }) => {
             audioEngine.playCancel();
             onBack();
           }}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#403229] text-[#f6ded1] hover:bg-[#f4b41a] hover:text-[#1c1109] font-pixel text-xs rounded border-2 border-[#1c1109] transition-all shadow-[2px_2px_0px_rgba(0,0,0,0.8)]"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#403229] text-[#f6ded1] hover:bg-[#f4b41a] hover:text-[#1c1109] font-pixel text-xs rounded border-2 border-[#1c1109] transition-all shadow-[2px_2px_0px_rgba(0,0,0,0.8)] cursor-pointer"
         >
           <span className="material-symbols-outlined text-sm">arrow_back</span>
           <span>[B] BACK TO MENU</span>
         </button>
-      </div>
-
-      {/* Shell Color Themes */}
-      <div className="bg-[#e9dab0] border-4 border-[#403229] p-4 rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,0.6)] mb-6">
-        <h3 className="font-pixel text-sm font-bold text-[#271900] uppercase mb-3 flex items-center gap-2">
-          <span className="material-symbols-outlined text-[#664800]">palette</span>
-          CONSOLE CHASSIS SHELL TINT
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-          {SHELL_THEMES.map((theme) => {
-            const isSelected = settings.shellColor === theme.id;
-            return (
-              <button
-                key={theme.id}
-                onClick={() => {
-                  audioEngine.playConfirm();
-                  onUpdateSettings({ shellColor: theme.id });
-                }}
-                className={`p-3 rounded-lg border-3 transition-all text-left flex items-center gap-3 ${
-                  isSelected
-                    ? 'bg-[#403229] text-[#f4b41a] border-[#1c1109] shadow-[3px_3px_0px_rgba(0,0,0,0.8)]'
-                    : 'bg-[#cdbe96] text-[#271900] border-[#403229] hover:bg-[#d4c69d]'
-                }`}
-              >
-                <div
-                  className="w-8 h-8 rounded-full border-2 border-[#1c1109] shadow-inner flex-shrink-0"
-                  style={{ backgroundColor: theme.hex }}
-                />
-                <div>
-                  <div className="font-pixel text-xs font-bold">{theme.name}</div>
-                  <div className="font-mono text-[10px] opacity-80">{theme.desc}</div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
       </div>
 
       {/* Display & Sound Toggles */}
