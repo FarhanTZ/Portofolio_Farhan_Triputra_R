@@ -13,6 +13,21 @@ export const ConsoleShell = () => {
   const [currentScreen, setCurrentScreen] = useState('BOOT');
   const [isZoomed, setIsZoomed] = useState(false);
   const [powerOn, setPowerOn] = useState(true);
+  const [isOpening, setIsOpening] = useState(true);
+  const [openingKey, setOpeningKey] = useState(0);
+
+  const handleTriggerOpening = () => {
+    setIsOpening(true);
+    setOpeningKey((prev) => prev + 1);
+    if (audioEngine.playPowerOn) audioEngine.playPowerOn();
+    setTimeout(() => {
+      setIsOpening(false);
+    }, 1400);
+  };
+
+  useEffect(() => {
+    handleTriggerOpening();
+  }, []);
 
   const [settings, setSettings] = useState({
     crtOverlay: true,
@@ -123,8 +138,85 @@ export const ConsoleShell = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center p-2 sm:p-4 md:p-8 font-pixel relative select-none">
-      {/* Top Header / Skip to Standard Floating Action */}
+      {/* GameBoy Split Opening Animation Doors Overlay */}
+      {isOpening && (
+        <div
+          key={openingKey}
+          className="fixed inset-0 z-[100] overflow-hidden pointer-events-none flex"
+        >
+          {/* Left Door Panel */}
+          <div className="w-1/2 h-full bg-[#f4b41a] border-r-8 border-[#403229] animate-open-left flex flex-col justify-between p-6 md:p-12 shadow-2xl relative">
+            <div className="flex items-center gap-2">
+              <div className="w-3.5 h-3.5 rounded-full bg-red-600 animate-pulse-glow border border-[#1c1109]" />
+              <span className="font-pixel text-xs md:text-sm font-bold text-[#1c1109] uppercase tracking-widest">
+                GAME BOY COLOR
+              </span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center my-auto">
+              <div className="w-24 h-24 md:w-36 md:h-36 bg-[#403229] rounded-2xl border-4 border-[#1c1109] flex items-center justify-center shadow-lg mb-4">
+                <span className="material-symbols-outlined text-4xl md:text-6xl text-[#f4b41a]">
+                  sports_esports
+                </span>
+              </div>
+              <span className="font-pixel text-sm md:text-lg font-bold text-[#1c1109] tracking-widest text-center">
+                FARHAN TRIPUTRA
+              </span>
+              <span className="font-mono text-[10px] md:text-xs text-[#574d2d] mt-1 font-semibold">
+                SYSTEM OPENING...
+              </span>
+            </div>
+
+            <div className="font-pixel text-[10px] md:text-xs text-[#574d2d] uppercase">
+              LEFT CHASSIS &bull; REV 2026
+            </div>
+          </div>
+
+          {/* Right Door Panel */}
+          <div className="w-1/2 h-full bg-[#f4b41a] border-l-8 border-[#403229] animate-open-right flex flex-col justify-between p-6 md:p-12 shadow-2xl relative">
+            <div className="flex justify-end items-center gap-2">
+              <span className="font-pixel text-xs md:text-sm font-bold text-[#1c1109] uppercase tracking-widest">
+                32-BIT SYSTEM
+              </span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center my-auto">
+              <div className="w-24 h-24 md:w-36 md:h-36 bg-[#403229] rounded-2xl border-4 border-[#1c1109] flex items-center justify-center shadow-lg mb-4">
+                <div className="flex gap-2">
+                  <div className="w-8 h-8 md:w-12 md:h-12 bg-[#93000a] rounded-full border-2 border-[#1c1109] font-pixel text-xs md:text-sm font-bold text-white flex items-center justify-center">
+                    B
+                  </div>
+                  <div className="w-8 h-8 md:w-12 md:h-12 bg-[#93000a] rounded-full border-2 border-[#1c1109] font-pixel text-xs md:text-sm font-bold text-white flex items-center justify-center">
+                    A
+                  </div>
+                </div>
+              </div>
+              <span className="font-pixel text-sm md:text-lg font-bold text-[#1c1109] tracking-widest text-center">
+                PORTFOLIO EDITION
+              </span>
+              <span className="font-mono text-[10px] md:text-xs text-[#574d2d] mt-1 font-semibold">
+                READY PLAYER ONE
+              </span>
+            </div>
+
+            <div className="font-pixel text-[10px] md:text-xs text-[#574d2d] uppercase text-right">
+              RIGHT CHASSIS &bull; READY
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Top Header Floating Actions */}
       <div className="fixed top-3 right-3 z-50 flex items-center gap-2">
+        <button
+          onClick={handleTriggerOpening}
+          className="text-[10px] font-pixel text-[#f6ded1] hover:text-[#f4b41a] uppercase tracking-widest bg-[#251911]/90 backdrop-blur-xs px-3 py-2 border border-[#9d8f79] hover:border-[#f4b41a] transition-all rounded-md shadow-lg flex items-center gap-1.5 cursor-pointer"
+          title="Replay GameBoy Split Opening Animation"
+        >
+          <span className="material-symbols-outlined text-sm">replay</span>
+          <span>RE-OPEN CONSOLE</span>
+        </button>
+
         <button
           onClick={() => {
             setIsZoomed((prev) => !prev);
@@ -142,9 +234,9 @@ export const ConsoleShell = () => {
       {/* Main Console Shell Body */}
       <div
         id="console-shell"
-        className={`console-shell-border w-full max-w-[390px] md:max-w-6xl min-h-[660px] md:min-h-0 md:h-auto md:aspect-[21/9] flex flex-col md:flex-row items-center justify-between p-3 sm:p-5 md:p-10 relative zoom-transition ${
+        className={`console-shell-border w-full max-w-[390px] md:max-w-6xl min-h-[660px] md:min-h-0 md:h-auto md:aspect-[21/9] flex flex-col md:flex-row items-center justify-between p-3 sm:p-5 md:p-10 relative z-10 zoom-transition ${
           isZoomed ? 'zoom-active' : ''
-        }`}
+        } ${isOpening ? 'animate-console-entrance' : ''}`}
         style={{
           backgroundColor: shellBgColors[settings.shellColor] || '#f4b41a',
         }}
@@ -152,7 +244,7 @@ export const ConsoleShell = () => {
         {/* Shoulder Bumpers (Desktop View) */}
         <div
           id="shoulder-bumpers"
-          className="absolute -top-[36px] left-12 right-12 h-[36px] z-[-1] justify-between items-end transition-opacity duration-300 hidden md:flex"
+          className="absolute -top-[34px] left-12 right-12 h-[36px] z-[0] justify-between items-end transition-all duration-300 hidden md:flex pointer-events-auto"
         >
           <button
             onClick={() => {
@@ -259,11 +351,11 @@ export const ConsoleShell = () => {
         {/* Display Screen Frame & Glass */}
         <div
           id="inner-screen"
-          className="screen-bezel w-full md:flex-1 h-[280px] sm:h-[320px] md:h-full flex flex-col relative zoom-transition bg-[#fdbb24] mx-0 md:mx-4 overflow-hidden rounded-[20px] md:rounded-[28px]"
+          className="screen-bezel w-full md:flex-1 h-[280px] sm:h-[320px] md:h-full flex flex-col relative zoom-transition bg-[#fdbb24] mx-0 md:mx-4 overflow-hidden rounded-[28px] md:rounded-[36px]"
         >
           {/* Display Glass */}
           <div
-            className={`screen-glass w-full h-full rounded-[16px] md:rounded-[28px] overflow-hidden flex flex-col relative ${
+            className={`screen-glass w-full h-full rounded-[20px] md:rounded-[24px] overflow-hidden flex flex-col relative ${
               settings.crtOverlay ? 'crt-on' : ''
             }`}
             style={{

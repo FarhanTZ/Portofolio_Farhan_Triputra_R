@@ -35,16 +35,17 @@
 }
 
 .screen-bezel {
-  border: 28px solid #fdbb24;
-  border-radius: 16px 16px 44px 16px;
-  box-shadow: inset 4px 4px 12px rgba(0,0,0,0.85);
+  border: 24px solid #fdbb24;
+  border-radius: 36px !important;
+  box-shadow: inset 4px 4px 14px rgba(0,0,0,0.85);
+  overflow: hidden;
 }
 
 .screen-glass {
   background-color: #f1e2b7;
   position: relative;
   overflow: hidden;
-  border-radius: 24px;
+  border-radius: 24px !important;
   box-shadow: inset 0 0 24px rgba(0,0,0,0.6);
 }
 
@@ -238,4 +239,68 @@
 }
 .custom-retro-scroll::-webkit-scrollbar-thumb:hover {
   background: #ffd587;
+}
+
+/* GameBoy Split Opening Animation (Left & Right doors) */
+@keyframes slide-open-left {
+  0% {
+    transform: translateX(0%);
+  }
+  20% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slide-open-right {
+  0% {
+    transform: translateX(0%);
+  }
+  20% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes console-assemble {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(16px);
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.animate-open-left {
+  animation: slide-open-left 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.animate-open-right {
+  animation: slide-open-right 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.animate-console-entrance {
+  animation: console-assemble 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 0.8s ease-in-out infinite;
 }
