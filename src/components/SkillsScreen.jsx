@@ -43,7 +43,7 @@ export const SkillsScreen = ({ onBack }) => {
       </div>
 
       {/* Category Tabs */}
-      <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
+      <div className="flex flex-wrap gap-2 mb-4">
         {SKILLS_DATA.map((cat, idx) => (
           <button
             key={cat.category}
@@ -51,7 +51,7 @@ export const SkillsScreen = ({ onBack }) => {
               audioEngine.playBlip();
               setActiveCategory(idx);
             }}
-            className={`px-3 py-1.5 font-pixel text-xs rounded border-2 transition-all whitespace-nowrap ${
+            className={`px-2.5 py-1.5 font-pixel text-xs rounded border-2 transition-all cursor-pointer ${
               activeCategory === idx
                 ? 'bg-[#f4b41a] text-[#1c1109] font-bold border-[#1c1109] shadow-[2px_2px_0px_rgba(0,0,0,0.8)]'
                 : 'bg-[#2a1d15] text-[#d4c4ac] border-[#504533] hover:border-[#f4b41a]'
