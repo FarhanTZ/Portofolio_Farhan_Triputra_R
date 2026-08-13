@@ -151,24 +151,47 @@ export const ProfileScreen = ({ onBack, isZoomed }) => {
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div className="flex gap-2">
-              <a
-                href={PERSONAL_INFO.github}
-                target="_blank"
-                rel="noreferrer"
-                className="flex-1 py-1.5 bg-[#403229] text-[#f4b41a] hover:bg-[#1c1109] font-pixel text-xs rounded border border-[#1c1109] flex items-center justify-center gap-1 font-bold"
-              >
-                <span>GITHUB</span>
-              </a>
-              <a
-                href={PERSONAL_INFO.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                className="flex-1 py-1.5 bg-[#403229] text-[#06b6d4] hover:bg-[#1c1109] font-pixel text-xs rounded border border-[#1c1109] flex items-center justify-center gap-1 font-bold"
-              >
-                <span>LINKEDIN</span>
-              </a>
+            {/* Quick Links & Social Media */}
+            <div className="flex flex-col gap-2">
+              {/* Row 1: GitHub & LinkedIn */}
+              <div className="flex gap-2">
+                <a
+                  href={PERSONAL_INFO.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex-1 py-1.5 bg-[#403229] text-[#f4b41a] hover:bg-[#1c1109] font-pixel text-xs rounded border border-[#1c1109] flex items-center justify-center gap-1 font-bold shadow-sm cursor-pointer"
+                >
+                  <span>GITHUB</span>
+                </a>
+                <a
+                  href={PERSONAL_INFO.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex-1 py-1.5 bg-[#403229] text-[#06b6d4] hover:bg-[#1c1109] font-pixel text-xs rounded border border-[#1c1109] flex items-center justify-center gap-1 font-bold shadow-sm cursor-pointer"
+                >
+                  <span>LINKEDIN</span>
+                </a>
+              </div>
+
+              {/* Row 2: YouTube & Instagram (Below GitHub & LinkedIn) */}
+              <div className="flex gap-2">
+                <a
+                  href={PERSONAL_INFO.youtube}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex-1 py-1.5 bg-[#403229] text-[#ef4444] hover:bg-[#1c1109] font-pixel text-xs rounded border border-[#1c1109] flex items-center justify-center gap-1 font-bold shadow-sm cursor-pointer"
+                >
+                  <span>YOUTUBE</span>
+                </a>
+                <a
+                  href={PERSONAL_INFO.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex-1 py-1.5 bg-[#403229] text-[#ec4899] hover:bg-[#1c1109] font-pixel text-xs rounded border border-[#1c1109] flex items-center justify-center gap-1 font-bold shadow-sm cursor-pointer"
+                >
+                  <span>INSTAGRAM</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

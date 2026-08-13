@@ -12,6 +12,8 @@ export const PERSONAL_INFO = {
   github: 'https://github.com/FarhanTZ',
   githubUsername: 'FarhanTZ',
   linkedin: 'https://linkedin.com/in/farhan-triputra-ramadhan-a70b67332',
+  youtube: 'https://www.youtube.com/@Parhannnnn',
+  instagram: 'https://www.instagram.com/parhann_14/',
   bio: 'Software Engineer with a Computer Science background specializing in mobile development (Flutter) and backend architecture (Laravel, Go, Python). Experienced in architecting multi-role Event Booking Systems, CPG visitor tracking platforms, Clean Architecture with Cubit state management, and high-performance RESTful APIs.',
 };
 
