@@ -304,3 +304,31 @@
 .animate-pulse-glow {
   animation: pulse-glow 0.8s ease-in-out infinite;
 }
+
+/* Animated Retro Cat Background Float & Breathing Motion */
+@keyframes cat-bg-float {
+  0% {
+    background-position: 50% 50%;
+    transform: scale(1) translateY(0px) rotate(0deg);
+  }
+  25% {
+    background-position: 51.5% 48.5%;
+    transform: scale(1.025) translateY(-5px) rotate(0.4deg);
+  }
+  50% {
+    background-position: 48.5% 51.5%;
+    transform: scale(1.015) translateY(2px) rotate(-0.3deg);
+  }
+  75% {
+    background-position: 51% 52%;
+    transform: scale(1.03) translateY(-7px) rotate(0.2deg);
+  }
+  100% {
+    background-position: 50% 50%;
+    transform: scale(1) translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-cat-bg {
+  animation: cat-bg-float 10s ease-in-out infinite;
+}

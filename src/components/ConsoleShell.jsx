@@ -359,14 +359,18 @@ export const ConsoleShell = () => {
               settings.crtOverlay ? 'crt-on' : ''
             }`}
             style={{
-              backgroundImage: powerOn
-                ? `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("${SCREEN_BACKGROUND_URL}")`
-                : 'none',
-              backgroundColor: powerOn ? '#f1e2b7' : '#0e0804',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center center',
+              backgroundColor: powerOn ? '#1c1109' : '#0e0804',
             }}
           >
+            {/* Animated Retro Cat Background Layer */}
+            {powerOn && (
+              <div
+                className="absolute inset-0 z-0 bg-cover bg-center pointer-events-none animate-cat-bg"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("${SCREEN_BACKGROUND_URL}")`,
+                }}
+              />
+            )}
             {!powerOn ? (
               <div className="flex flex-col items-center justify-center h-full text-[#504533] font-pixel text-xs">
                 <span>SYSTEM POWER OFF</span>
