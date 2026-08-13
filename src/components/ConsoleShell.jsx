@@ -15,6 +15,7 @@ export const ConsoleShell = () => {
   const [powerOn, setPowerOn] = useState(true);
   const [isOpening, setIsOpening] = useState(true);
   const [openingKey, setOpeningKey] = useState(0);
+  const [bgmPlaying, setBgmPlaying] = useState(false);
 
   const handleTriggerOpening = () => {
     setIsOpening(true);
@@ -228,6 +229,27 @@ export const ConsoleShell = () => {
             {isZoomed ? 'fullscreen_exit' : 'open_in_full'}
           </span>
           <span>{isZoomed ? 'CONSOLE VIEW' : 'SKIP TO STANDARD'}</span>
+        </button>
+      </div>
+
+      {/* Bottom Left Floating Lofi BGM Toggle */}
+      <div className="fixed bottom-3 left-3 z-50">
+        <button
+          onClick={() => {
+            const isPlaying = audioEngine.toggleLofiBgm();
+            setBgmPlaying(isPlaying);
+          }}
+          className={`text-[10px] font-pixel uppercase tracking-widest px-3 py-2 border transition-all rounded-md shadow-lg flex items-center gap-1.5 cursor-pointer backdrop-blur-xs ${
+            bgmPlaying
+              ? 'bg-[#f4b41a] text-[#1c1109] border-[#1c1109] font-bold shadow-[0_0_12px_rgba(244,180,26,0.6)] animate-pulse'
+              : 'bg-[#251911]/90 text-[#f6ded1] hover:text-[#f4b41a] border-[#9d8f79] hover:border-[#f4b41a]'
+          }`}
+          title="Toggle 8-Bit Retro Lofi BGM (100% Royalty Free)"
+        >
+          <span className="material-symbols-outlined text-sm">
+            {bgmPlaying ? 'music_note' : 'music_off'}
+          </span>
+          <span>{bgmPlaying ? 'LOFI BGM: ON 🎵' : 'LOFI BGM: OFF 🔇'}</span>
         </button>
       </div>
 

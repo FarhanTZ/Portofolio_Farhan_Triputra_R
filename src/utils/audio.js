@@ -130,6 +130,93 @@ class RetroAudioEngine {
       osc.stop(ctx.currentTime + 0.2);
     } catch {}
   }
+  // Lofi Chiptune BGM Sequencer (100% Web Audio API Synthesized - Royalty Free)
+  startLofiBgm() {
+    if (this.bgmPlaying) return;
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    this.bgmPlaying = true;
+    let step = 0;
+
+    // Chill Lofi Chords & Bass Frequencies (Cmaj7 -> Am7 -> Dm7 -> G7)
+    const chords = [
+      { bass: 130.81, notes: [261.63, 329.63, 392.00, 493.88] }, // Cmaj7
+      { bass: 110.00, notes: [220.00, 261.63, 329.63, 392.00] }, // Am7
+      { bass: 146.83, notes: [293.66, 349.23, 440.00, 523.25] }, // Dm7
+      { bass: 98.00,  notes: [196.00, 246.94, 293.66, 349.23] }  // G7
+    ];
+
+    const playStep = () => {
+      if (!this.bgmPlaying || !this.enabled) return;
+
+      const chordIdx = Math.floor(step / 4) % chords.length;
+      const currentChord = chords[chordIdx];
+      const beatInChord = step % 4;
+
+      // Bass note on beats 0 & 2 (Triangle wave - warm Lofi bass)
+      if (beatInChord === 0 || beatInChord === 2) {
+        this.playLofiTone(currentChord.bass, 'triangle', 0.45, 0.35);
+      }
+
+      // Soft Chord Pad on beat 0
+      if (beatInChord === 0) {
+        currentChord.notes.forEach((freq) => {
+          this.playLofiTone(freq, 'sine', 0.6, 0.15);
+        });
+      }
+
+      // Gentle Lofi Melody Arpeggio
+      const melNote = currentChord.notes[beatInChord % currentChord.notes.length];
+      this.playLofiTone(melNote * 1.5, 'triangle', 0.28, 0.18);
+
+      step++;
+      this.bgmTimer = setTimeout(playStep, 480); // ~62 BPM chill Lofi tempo
+    };
+
+    playStep();
+  }
+
+  stopLofiBgm() {
+    this.bgmPlaying = false;
+    if (this.bgmTimer) {
+      clearTimeout(this.bgmTimer);
+      this.bgmTimer = null;
+    }
+  }
+
+  toggleLofiBgm() {
+    if (this.bgmPlaying) {
+      this.stopLofiBgm();
+    } else {
+      this.startLofiBgm();
+    }
+    return this.bgmPlaying;
+  }
+
+  playLofiTone(freq, type = 'sine', duration = 0.3, gainVal = 0.1) {
+    const ctx = this.getContext();
+    if (!ctx) return;
+    try {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+      const masterVol = Math.max(this.volume, 0.6);
+      const actualGain = gainVal * masterVol;
+      gain.gain.setValueAtTime(0, ctx.currentTime);
+      gain.gain.linearRampToValueAtTime(actualGain, ctx.currentTime + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+    } catch {}
+  }
 }
 
 export const audioEngine = new RetroAudioEngine();
