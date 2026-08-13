@@ -5,6 +5,13 @@ import { audioEngine } from '../utils/audio';
 export const ProjectsScreen = ({ onBack }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedTag, setSelectedTag] = useState('ALL');
+  const [activeImage, setActiveImage] = useState(null);
+
+  const handleOpenProject = (project) => {
+    audioEngine.playConfirm();
+    setSelectedProject(project);
+    setActiveImage(project.image);
+  };
 
   const allTags = ['ALL', ...Array.from(new Set(PROJECTS_DATA.flatMap((p) => p.tags)))];
 
@@ -67,10 +74,7 @@ export const ProjectsScreen = ({ onBack }) => {
         {filteredProjects.map((project) => (
           <div
             key={project.id}
-            onClick={() => {
-              audioEngine.playConfirm();
-              setSelectedProject(project);
-            }}
+            onClick={() => handleOpenProject(project)}
             className="group cursor-pointer bg-[#e9dab0] border-4 border-[#403229] p-3 rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,0.6)] hover:shadow-[6px_6px_0px_rgba(0,0,0,0.8)] hover:scale-[1.01] transition-all flex flex-col justify-between"
           >
             <div>
@@ -138,14 +142,47 @@ export const ProjectsScreen = ({ onBack }) => {
               </button>
             </div>
 
-            <div className="w-full h-48 md:h-56 mb-4 border-4 border-[#403229] rounded overflow-hidden bg-[#1c1109]">
+            {/* Main Image Container */}
+            <div className="w-full h-52 md:h-64 mb-3 border-4 border-[#403229] rounded overflow-hidden bg-[#1c1109] relative">
               <img
-                src={selectedProject.image}
+                src={activeImage || selectedProject.image}
                 alt={selectedProject.title}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain bg-[#1c1109]"
                 referrerPolicy="no-referrer"
               />
             </div>
+
+            {/* Secondary Image Switcher if present */}
+            {selectedProject.secondaryImage && (
+              <div className="flex gap-2 mb-4">
+                <button
+                  onClick={() => {
+                    audioEngine.playBlip();
+                    setActiveImage(selectedProject.image);
+                  }}
+                  className={`flex-1 py-1.5 font-pixel text-xs rounded border-2 transition-all ${
+                    activeImage === selectedProject.image
+                      ? 'bg-[#f4b41a] text-[#1c1109] font-bold border-[#1c1109]'
+                      : 'bg-[#403229] text-[#f6ded1] border-[#1c1109] hover:bg-[#664800]'
+                  }`}
+                >
+                  [1] MAIN THUMBNAIL
+                </button>
+                <button
+                  onClick={() => {
+                    audioEngine.playBlip();
+                    setActiveImage(selectedProject.secondaryImage);
+                  }}
+                  className={`flex-1 py-1.5 font-pixel text-xs rounded border-2 transition-all ${
+                    activeImage === selectedProject.secondaryImage
+                      ? 'bg-[#f4b41a] text-[#1c1109] font-bold border-[#1c1109]'
+                      : 'bg-[#403229] text-[#f6ded1] border-[#1c1109] hover:bg-[#664800]'
+                  }`}
+                >
+                  [2] WORKFLOW PENGELOLA
+                </button>
+              </div>
+            )}
 
             <div className="grid grid-cols-3 gap-2 mb-4 bg-[#cdbe96] p-2.5 rounded border-2 border-[#403229] text-center font-pixel text-xs">
               <div>
@@ -186,11 +223,22 @@ export const ProjectsScreen = ({ onBack }) => {
               <button
                 onClick={() => {
                   audioEngine.playConfirm();
-                  alert(`Simulation launched for ${selectedProject.title}!`);
+                  if (selectedProject.docUrl) {
+                    window.open(selectedProject.docUrl, '_blank');
+                  } else {
+                    alert(`Simulation launched for ${selectedProject.title}!`);
+                  }
                 }}
-                className="flex-1 py-2 bg-[#f4b41a] text-[#1c1109] font-pixel font-bold text-xs rounded border-2 border-[#1c1109] shadow-[2px_2px_0px_rgba(0,0,0,0.8)] hover:bg-[#ffd587]"
+                className="flex-1 py-2 bg-[#f4b41a] text-[#1c1109] font-pixel font-bold text-xs rounded border-2 border-[#1c1109] shadow-[2px_2px_0px_rgba(0,0,0,0.8)] hover:bg-[#ffd587] flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                RUN SIMULATION
+                <span className="material-symbols-outlined text-sm">
+                  {selectedProject.docUrl ? 'description' : 'play_arrow'}
+                </span>
+                <span>
+                  {selectedProject.docUrl
+                    ? 'RUN SIMULATION (BUKA PANDUAN PDF)'
+                    : 'RUN SIMULATION'}
+                </span>
               </button>
               <button
                 onClick={() => {

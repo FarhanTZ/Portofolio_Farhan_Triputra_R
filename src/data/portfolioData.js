@@ -22,9 +22,9 @@ export const PROJECTS_DATA = [
     description: 'Multi-role venue reservation system separating workflows across Marketing, Front Office, Media Production, Duty Officer, & Super Admin.',
     fullDetails:
       'Architected an integrated multi-role venue reservation system for Malang Creative Center. Features Multi-Booking capabilities, automated room verification workflows, QR Code check-in/out integration, and 360° virtual room inspection tours.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCj7Rt9Q7WkqVUfZt6dlZ-aozKFxH9l-Ie05UAUMq2QWCPVHcejnrw0Qy1UxkPQ84fqFqK_bw_QQF_lrffYLjzeG9H65FNNVQQhmv7RyjMlmnUkhutVuqub8EwT7syw1VGVPmPWZmMuMplVhb6mJFCRZbaZdcyzHNjnJXs4_O9i20CbVlzIOodF3LF9SrE51ks648BwR2La7EOOucaZLoh0jMfWk2LC8pK4kj-ZyL88r7JFw6iv4OD4',
-    tags: ['Laravel', 'Go', 'MySQL', 'QR Code', '360° VR Tour'],
+    image: '/Project/Thumbnail Event Booking.png',
+    secondaryImage: '/Project/Event Booking Pengelolah.png',
+    tags: ['Laravel', 'MySQL', 'QR Code', '360° VR Tour'],
     featured: true,
     stats: {
       stars: 142,
@@ -39,8 +39,7 @@ export const PROJECTS_DATA = [
     description: 'Real-time visitor counting system using AI computer vision (YOLOv8s) & digital form customization dashboard.',
     fullDetails:
       'Engineered an integrated visitor counting system utilizing AI computer vision (YOLOv8s) via surveillance streams and custom Front Office digital forms. Developed a real-time data visualization dashboard for cross-divisional monitoring to streamline operational analytics.',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuBPWhmUXDdjki6_is_hIHe89F7Berp_Rfc991dZ29x7FjOXoxbO8edqsBV8PGLrFl6nnVUrX-_d_VObFfQZtxWyJq4p5X8zEFCuKcAq2onkPNPMdEaMrADCZ_BaVvgffGUMk7zZibFMrm2GjzaHMLRUETco2Q3Wf-Asikt-EmuESxON7Ab_whlugbLbPd_8tqz9redtozPtT-o4hYwOces_L7hhbjbhOMXLxpEMRjbiLodNcygxR41X',
+    image: '/Project/Visitor Count.png',
     tags: ['Python', 'YOLOv8s AI', 'Dashboard', 'REST API'],
     featured: true,
     stats: {
@@ -53,36 +52,51 @@ export const PROJECTS_DATA = [
   {
     id: 'glupulse-mobile',
     title: 'Glupulse — Health Monitoring App',
-    description: 'Health monitoring mobile application built with Flutter using Clean Architecture & Cubit state management.',
+    description: 'Health monitoring mobile application built with Flutter & Go (Golang) backend using Clean Architecture & Cubit state management.',
     fullDetails:
-      'Led the mobile engineering team in constructing a health monitoring application in Flutter. Implemented Clean Architecture with Cubit state management for real-time data streaming, ensuring an optimized and highly responsive user experience.',
-    image:
-      'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80',
-    tags: ['Flutter (Dart)', 'Clean Architecture', 'Cubit', 'REST API'],
+      'Led the engineering team in constructing a health monitoring application with Flutter frontend and high-performance Go (Golang) REST API backend. Implemented Clean Architecture with Cubit state management for real-time data streaming, ensuring an optimized and highly responsive user experience.',
+    image: '/Project/Glupulse.png',
+    tags: ['Flutter (Dart)', 'Go (Golang)', 'Clean Architecture', 'Cubit', 'REST API'],
     featured: true,
     stats: {
       stars: 185,
       commits: 290,
       complexity: 'HIGH',
     },
-    role: 'Lead & Front-End Developer',
+    role: 'Lead & Full-Stack Developer',
   },
   {
-    id: 'chiptune-synth-32',
-    title: 'Chiptune_Synth_32',
-    description: 'Browser-based 8-bit FM synthesizer & tracker with retro GameBoy audio channels.',
+    id: 'it-inventaris-mcc',
+    title: 'IT Asset & Inventory Management (MCC)',
+    description: 'Sistem pencatatan, pemantauan, dan manajemen inventaris aset IT & infrastruktur gedung di Malang Creative Center berbasis Flutter & Firebase.',
     fullDetails:
-      'A Web Audio API synthesizer capable of emulating GameBoy DMG sound chips (Pulse 1, Pulse 2, Custom Wave, and Noise). Allows exporting tracks as MIDI and WAV files.',
-    image:
-      'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=600&q=80',
-    tags: ['Web Audio API', 'React', 'Audio Engine'],
-    featured: false,
+      'Sistem pengelolaan inventaris aset IT terpadu berbasis Flutter dan Firebase yang dirancang untuk pelacakan, penelusuran status kondisi perangkat (komputer, jaringan, multimedia), serta otomatisasi alur kerja audit berkala seluruh infrastruktur teknologi gedung Malang Creative Center.',
+    image: '/Project/Thumbnail IT Inventaris.png',
+    docUrl: '/Project/Tata Cara penggunaan  Aplikas MCC Inventori (2).pdf',
+    tags: ['Flutter (Dart)', 'Firebase', 'Cloud Firestore', 'IT Asset Management'],
+    featured: true,
     stats: {
-      stars: 94,
-      commits: 180,
-      complexity: 'MEDIUM',
+      stars: 168,
+      commits: 325,
+      complexity: 'HIGH',
     },
-    role: 'Software Engineer',
+    role: 'Flutter / Firebase Engineer',
+  },
+  {
+    id: 'gameboy-portfolio',
+    title: 'Retro GameBoy Interactive Portfolio',
+    description: 'Retro GameBoy-style interactive portfolio web app featuring pixel audio engine, custom screens, mini-games, and RPG player stats.',
+    fullDetails:
+      'Interactive personal portfolio website designed with classic GameBoy retro handheld console aesthetics. Built with React 19, Tailwind CSS, Web Audio API sound effects synthesizer, RPG character stats system, and interactive project database.',
+    image: '/Project/Portofolio_project.png',
+    tags: ['React 19', 'Tailwind CSS', 'Web Audio API', 'Retro UI'],
+    featured: true,
+    stats: {
+      stars: 250,
+      commits: 450,
+      complexity: 'HIGH',
+    },
+    role: 'Creator & Software Engineer',
   },
 ];
 
@@ -100,6 +114,7 @@ export const SKILLS_DATA = [
     category: 'BACKEND & DATABASE',
     skills: [
       { name: 'Laravel (PHP)', level: 94, icon: 'dns', description: 'Multi-role authentication, Eloquent ORM, RESTful APIs, and QR Code integrations.' },
+      { name: 'Firebase & Firestore', level: 92, icon: 'local_fire_department', description: 'Real-time NoSQL database, Cloud Firestore, authentication, and cloud storage.' },
       { name: 'Go (Golang)', level: 90, icon: 'speed', description: 'High-performance microservices, REST APIs, and concurrent routines.' },
       { name: 'Python & AI (YOLOv8s)', level: 88, icon: 'psychology', description: 'Computer vision, automated object detection, and data stream processing.' },
       { name: 'MySQL & PostgreSQL', level: 92, icon: 'database', description: 'Relational database schema optimization, indexing, and complex queries.' },

@@ -259,19 +259,16 @@ export const GameScreen = ({ onBack }) => {
     <div className="flex flex-col h-full w-full p-4 items-center justify-between relative z-10 text-[#f6ded1]">
       {/* Game Header Bar */}
       <div className="w-full dialog-box bg-[#2a1d15] text-[#f6ded1] border-4 border-[#403229] flex items-center justify-between p-2.5 mb-2 font-pixel text-xs">
-        <div>
-          <span className="text-[#f4b41a] font-bold">32-BIT QUEST</span>
-          <span className="ml-3 text-[#d4c4ac]">SCORE: {score}</span>
-        </div>
-        <div>
-          <span className="text-[#ffd587]">HI: {highScore}</span>
+        <div className="flex items-center gap-2">
+          <span className="material-symbols-outlined text-[#f4b41a] text-sm">sports_esports</span>
+          <span className="text-[#f4b41a] font-bold uppercase tracking-wider">32-BIT QUEST MINI-GAME</span>
         </div>
         <button
           onClick={() => {
             audioEngine.playCancel();
             onBack();
           }}
-          className="px-2 py-0.5 bg-[#403229] hover:bg-[#f4b41a] hover:text-[#1c1109] font-pixel text-[10px] rounded border border-[#1c1109]"
+          className="px-2.5 py-1 bg-[#403229] hover:bg-[#f4b41a] hover:text-[#1c1109] font-pixel text-[10px] rounded border border-[#1c1109] transition-colors"
         >
           [B] EXIT
         </button>
@@ -285,23 +282,36 @@ export const GameScreen = ({ onBack }) => {
           height={250}
           className="w-full h-full object-contain"
         />
+
+        {/* Top Left Score Overlay Badge */}
+        <div className="absolute top-2 left-2 bg-[#1c1109]/90 text-[#f4b41a] px-2 py-0.5 rounded font-pixel text-xs border border-[#f4b41a]/60 shadow-[2px_2px_0px_rgba(0,0,0,0.8)]">
+          SCORE: {score}
+        </div>
+
+        {/* Bottom Right High Score Overlay Badge */}
+        <div className="absolute bottom-2 right-2 bg-[#1c1109]/90 text-[#ffd587] px-2 py-0.5 rounded font-pixel text-xs border border-[#ffd587]/60 shadow-[2px_2px_0px_rgba(0,0,0,0.8)]">
+          HIGH SCORE: {highScore}
+        </div>
       </div>
 
       {/* Touch / Click Controls for Mini Game */}
-      <div className="w-full max-w-md mt-3 flex items-center justify-between gap-4 font-pixel text-xs">
-        <button
-          onClick={handleJump}
-          className="flex-1 py-2 bg-[#f4b41a] text-[#1c1109] font-bold rounded border-2 border-[#1c1109] shadow-[2px_2px_0px_rgba(0,0,0,0.8)] active:translate-y-0.5"
-        >
-          JUMP / ACTION [A]
-        </button>
+      <div className="w-full max-w-md mt-3 flex items-center justify-center gap-4 font-pixel text-xs">
+        {gameState === 'PLAYING' && (
+          <button
+            onClick={handleJump}
+            className="w-full py-2.5 bg-[#f4b41a] text-[#1c1109] font-bold rounded-lg border-2 border-[#1c1109] shadow-[3px_3px_0px_rgba(0,0,0,0.8)] active:translate-y-0.5 hover:bg-[#ffd587] transition-all cursor-pointer"
+          >
+            JUMP / ACTION [A]
+          </button>
+        )}
 
         {gameState === 'GAMEOVER' && (
           <button
             onClick={restartGame}
-            className="flex-1 py-2 bg-[#06b6d4] text-[#1c1109] font-bold rounded border-2 border-[#1c1109] shadow-[2px_2px_0px_rgba(0,0,0,0.8)] active:translate-y-0.5"
+            className="w-full py-2.5 bg-[#06b6d4] text-[#1c1109] font-bold rounded-lg border-2 border-[#1c1109] shadow-[3px_3px_0px_rgba(0,0,0,0.8)] active:translate-y-0.5 hover:bg-[#67e8f9] transition-all cursor-pointer flex items-center justify-center gap-2"
           >
-            RESTART GAME
+            <span className="material-symbols-outlined text-base">replay</span>
+            <span>RESTART GAME</span>
           </button>
         )}
       </div>
