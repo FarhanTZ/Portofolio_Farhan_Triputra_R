@@ -400,7 +400,7 @@ export const ConsoleShell = () => {
                 )}
 
                 {currentScreen === 'profile' && (
-                  <ProfileScreen onBack={() => setCurrentScreen('BOOT')} />
+                  <ProfileScreen isZoomed={isZoomed} onBack={() => setCurrentScreen('BOOT')} />
                 )}
 
                 {currentScreen === 'customize' && (

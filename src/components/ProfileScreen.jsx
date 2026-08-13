@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { PLAYER_STATS_DATA, PERSONAL_INFO, WORK_EXPERIENCE, EDUCATION, PROJECTS_DATA } from '../data/portfolioData';
 import { audioEngine } from '../utils/audio';
 
-export const ProfileScreen = ({ onBack }) => {
+export const ProfileScreen = ({ onBack, isZoomed }) => {
   const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
 
@@ -51,12 +51,12 @@ export const ProfileScreen = ({ onBack }) => {
         </button>
       </div>
 
-      {/* Main Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      {/* Main Stats (Stacked in GameBoy mode, Side-by-Side in Expanded mode) */}
+      <div className={`grid grid-cols-1 ${isZoomed ? 'lg:grid-cols-2' : ''} gap-4 mb-6`}>
         {/* Character Card */}
-        <div className="bg-[#e9dab0] border-4 border-[#403229] p-3 sm:p-4 rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,0.6)] flex flex-col justify-between min-w-0">
+        <div className="bg-[#e9dab0] border-4 border-[#403229] p-3 sm:p-4 rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,0.6)] flex flex-col justify-between min-w-0 w-full">
           <div>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pb-3 border-b-2 border-[#cdbe96] mb-3">
+            <div className="flex flex-row items-center gap-3.5 pb-3 border-b-2 border-[#cdbe96] mb-3">
               {/* Profile Photo with Pixel Border */}
               <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-[#403229] text-[#f4b41a] rounded-lg border-2 border-[#1c1109] overflow-hidden shrink-0 shadow-md">
                 <img
