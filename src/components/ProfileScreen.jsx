@@ -27,14 +27,14 @@ export const ProfileScreen = ({ onBack }) => {
     <div className="flex flex-col h-full w-full p-4 md:p-6 overflow-y-auto custom-retro-scroll relative z-10 text-[#1c1109]">
       {/* Header Bar */}
       <div className="dialog-box mb-4 md:mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-        <div>
+        <div className="min-w-0 flex-1">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-[#664800]">badge</span>
-            <h2 className="font-pixel text-xl md:text-2xl font-bold uppercase text-[#271900] tracking-tight">
+            <h2 className="font-pixel text-lg sm:text-xl md:text-2xl font-bold uppercase text-[#271900] tracking-tight break-words">
               FARHAN TRIPUTRA PROFILE
             </h2>
           </div>
-          <p className="font-mono text-xs text-[#574d2d] mt-0.5">
+          <p className="font-mono text-[11px] sm:text-xs text-[#574d2d] mt-0.5 break-words">
             {PERSONAL_INFO.title} | {PERSONAL_INFO.location}
           </p>
         </div>
@@ -44,7 +44,7 @@ export const ProfileScreen = ({ onBack }) => {
             audioEngine.playCancel();
             onBack();
           }}
-          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#403229] text-[#f6ded1] hover:bg-[#f4b41a] hover:text-[#1c1109] font-pixel text-xs rounded border-2 border-[#1c1109] transition-all shadow-[2px_2px_0px_rgba(0,0,0,0.8)] cursor-pointer"
+          className="flex items-center gap-1.5 px-3 py-1.5 bg-[#403229] text-[#f6ded1] hover:bg-[#f4b41a] hover:text-[#1c1109] font-pixel text-xs rounded border-2 border-[#1c1109] transition-all shadow-[2px_2px_0px_rgba(0,0,0,0.8)] cursor-pointer shrink-0"
         >
           <span className="material-symbols-outlined text-sm">arrow_back</span>
           <span>[B] BACK TO MENU</span>
@@ -54,11 +54,11 @@ export const ProfileScreen = ({ onBack }) => {
       {/* Main Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
         {/* Character Card */}
-        <div className="bg-[#e9dab0] border-4 border-[#403229] p-4 rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,0.6)] flex flex-col justify-between">
+        <div className="bg-[#e9dab0] border-4 border-[#403229] p-3 sm:p-4 rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,0.6)] flex flex-col justify-between min-w-0">
           <div>
-            <div className="flex items-center gap-3.5 pb-3 border-b-2 border-[#cdbe96] mb-3">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 pb-3 border-b-2 border-[#cdbe96] mb-3">
               {/* Profile Photo with Pixel Border */}
-              <div className="relative w-20 h-20 bg-[#403229] text-[#f4b41a] rounded-lg border-2 border-[#1c1109] overflow-hidden shrink-0 shadow-md">
+              <div className="relative w-16 h-16 sm:w-20 sm:h-20 bg-[#403229] text-[#f4b41a] rounded-lg border-2 border-[#1c1109] overflow-hidden shrink-0 shadow-md">
                 <img
                   src="/profile/Foto_Ijazah.jpeg"
                   alt="Farhan Triputra Ramadhan"
@@ -72,15 +72,15 @@ export const ProfileScreen = ({ onBack }) => {
                 </div>
               </div>
 
-              <div>
-                <h3 className="font-pixel text-base md:text-lg font-bold text-[#271900] leading-tight">
+              <div className="min-w-0 flex-1">
+                <h3 className="font-pixel text-sm sm:text-base md:text-lg font-bold text-[#271900] leading-tight break-words">
                   {PLAYER_STATS_DATA.name}
                 </h3>
-                <div className="font-mono text-xs text-[#664800] mt-0.5 font-semibold">
+                <div className="font-mono text-[11px] sm:text-xs text-[#664800] mt-0.5 font-semibold break-words">
                   EXP: {PLAYER_STATS_DATA.exp} / {PLAYER_STATS_DATA.maxExp} (LVL {PLAYER_STATS_DATA.level})
                 </div>
-                <div className="font-mono text-[11px] text-[#574d2d] mt-1 flex flex-wrap gap-2">
-                  <a href={`mailto:${PERSONAL_INFO.email}`} className="text-[#664800] hover:underline font-bold">
+                <div className="font-mono text-[10px] sm:text-[11px] text-[#574d2d] mt-1 break-all">
+                  <a href={`mailto:${PERSONAL_INFO.email}`} className="text-[#664800] hover:underline font-bold break-all">
                     ✉ {PERSONAL_INFO.email}
                   </a>
                 </div>
@@ -111,22 +111,22 @@ export const ProfileScreen = ({ onBack }) => {
             </div>
 
             {/* Attribute Scores */}
-            <div className="grid grid-cols-2 gap-2 font-pixel text-xs mb-4">
-              <div className="bg-[#cdbe96] p-2 rounded border border-[#403229] flex justify-between">
-                <span className="text-[#574d2d]">STR (FLUTTER/GO):</span>
-                <span className="font-bold text-[#271900]">{PLAYER_STATS_DATA.stats.str}</span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 font-pixel text-xs mb-4">
+              <div className="bg-[#cdbe96] p-2 rounded border border-[#403229] flex justify-between items-center gap-1 min-w-0">
+                <span className="text-[#574d2d] text-[10px] sm:text-xs truncate">STR (FLUTTER/GO):</span>
+                <span className="font-bold text-[#271900] text-xs shrink-0">{PLAYER_STATS_DATA.stats.str}</span>
               </div>
-              <div className="bg-[#cdbe96] p-2 rounded border border-[#403229] flex justify-between">
-                <span className="text-[#574d2d]">INT (AI/YOLOv8):</span>
-                <span className="font-bold text-[#271900]">{PLAYER_STATS_DATA.stats.int}</span>
+              <div className="bg-[#cdbe96] p-2 rounded border border-[#403229] flex justify-between items-center gap-1 min-w-0">
+                <span className="text-[#574d2d] text-[10px] sm:text-xs truncate">INT (AI/YOLOv8):</span>
+                <span className="font-bold text-[#271900] text-xs shrink-0">{PLAYER_STATS_DATA.stats.int}</span>
               </div>
-              <div className="bg-[#cdbe96] p-2 rounded border border-[#403229] flex justify-between">
-                <span className="text-[#574d2d]">AGI (CLEAN ARCH):</span>
-                <span className="font-bold text-[#271900]">{PLAYER_STATS_DATA.stats.agi}</span>
+              <div className="bg-[#cdbe96] p-2 rounded border border-[#403229] flex justify-between items-center gap-1 min-w-0">
+                <span className="text-[#574d2d] text-[10px] sm:text-xs truncate">AGI (CLEAN ARCH):</span>
+                <span className="font-bold text-[#271900] text-xs shrink-0">{PLAYER_STATS_DATA.stats.agi}</span>
               </div>
-              <div className="bg-[#cdbe96] p-2 rounded border border-[#403229] flex justify-between">
-                <span className="text-[#574d2d]">VIT (IT SUPPORT):</span>
-                <span className="font-bold text-[#271900]">{PLAYER_STATS_DATA.stats.vit}</span>
+              <div className="bg-[#cdbe96] p-2 rounded border border-[#403229] flex justify-between items-center gap-1 min-w-0">
+                <span className="text-[#574d2d] text-[10px] sm:text-xs truncate">VIT (IT SUPPORT):</span>
+                <span className="font-bold text-[#271900] text-xs shrink-0">{PLAYER_STATS_DATA.stats.vit}</span>
               </div>
             </div>
           </div>
