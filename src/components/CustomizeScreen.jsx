@@ -83,6 +83,31 @@ export const CustomizeScreen = ({ settings, onUpdateSettings, onBack }) => {
             {settings.soundEnabled ? '🔊 AUDIO CHIPTUNES ON' : '🔇 AUDIO CHIPTUNES MUTED'}
           </button>
         </div>
+
+        {/* Animated Cat Background Toggle */}
+        <div className="bg-[#e9dab0] border-4 border-[#403229] p-4 rounded-lg shadow-[4px_4px_0px_rgba(0,0,0,0.6)]">
+          <h3 className="font-pixel text-sm font-bold text-[#271900] uppercase mb-2 flex items-center gap-2">
+            <span className="material-symbols-outlined text-[#664800]">pets</span>
+            ANIMATED CAT BACKGROUND
+          </h3>
+          <p className="font-mono text-xs text-[#574d2d] mb-4">
+            Toggle breathing and floating motion animation on the retro cat background.
+          </p>
+
+          <button
+            onClick={() => {
+              audioEngine.playBlip();
+              onUpdateSettings({ animatedBackground: !settings.animatedBackground });
+            }}
+            className={`w-full py-2.5 font-pixel text-xs font-bold rounded border-2 border-[#1c1109] transition-all cursor-pointer ${
+              settings.animatedBackground !== false
+                ? 'bg-[#f4b41a] text-[#1c1109] shadow-[2px_2px_0px_rgba(0,0,0,0.8)]'
+                : 'bg-[#403229] text-[#f6ded1]'
+            }`}
+          >
+            {settings.animatedBackground !== false ? '🐾 ANIMATED CAT BG: ON' : '🐾 STATIC CAT BG: OFF'}
+          </button>
+        </div>
       </div>
     </div>
   );

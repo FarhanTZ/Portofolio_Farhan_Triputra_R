@@ -33,6 +33,7 @@ export const ConsoleShell = () => {
   const [settings, setSettings] = useState({
     crtOverlay: true,
     soundEnabled: true,
+    animatedBackground: true,
     volume: 0.3,
     shellColor: 'yellow',
   });
@@ -387,7 +388,9 @@ export const ConsoleShell = () => {
             {/* Animated Retro Cat Background Layer */}
             {powerOn && (
               <div
-                className="absolute inset-0 z-0 bg-cover bg-center pointer-events-none animate-cat-bg"
+                className={`absolute inset-0 z-0 bg-cover bg-center pointer-events-none ${
+                  settings.animatedBackground !== false ? 'animate-cat-bg' : ''
+                }`}
                 style={{
                   backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url("${SCREEN_BACKGROUND_URL}")`,
                 }}
